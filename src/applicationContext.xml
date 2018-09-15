@@ -7,4 +7,25 @@
         <property name="name" value="张三"></property>
     </bean>
 
+    <!--通过构造方法来配置bean属性-->
+    <bean id="car" class="com.fanxl.study.Car">
+        <constructor-arg value="Audi"></constructor-arg>
+        <constructor-arg value="ShangHai"></constructor-arg>
+        <constructor-arg value="300000"></constructor-arg>
+    </bean>
+
+    <!--通过构造方法注入属性值可以指定参数的位置-->
+    <bean id="car1" class="com.fanxl.study.Car">
+        <constructor-arg value="DaZhong" index="0"></constructor-arg>
+        <constructor-arg value="ShangHai" index="1"></constructor-arg>
+        <constructor-arg value="300000" index="2"></constructor-arg>
+    </bean>
+
+    <!--通过构造方法注入属性值可以指定参数的类型-->
+    <bean id="car2" class="com.fanxl.study.Car">
+        <constructor-arg value="Baoma" type="java.lang.String"></constructor-arg>
+        <constructor-arg value="ShangHai" type="java.lang.String"></constructor-arg>
+        <constructor-arg value="240" type="int"></constructor-arg>
+    </bean>
+
 </beans>
