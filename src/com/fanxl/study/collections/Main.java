@@ -17,8 +17,13 @@ public class Main {
 
         // 2.从IOC容器中获取Bean实例 name是xml配置bean的id
         Person person1 = (Person) ctx.getBean("person1");
-
         System.out.println(person1);
+
+        Student student = (Student) ctx.getBean("student");
+        System.out.println(student);
+
+        DataSource dataSource = ctx.getBean(DataSource.class);
+        System.out.println(dataSource);
 
     }
 

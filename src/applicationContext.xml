@@ -72,6 +72,7 @@
         <property name="car.maxSpeed" value="260"></property>
     </bean>
 
+    <!--配置list属性值-->
     <bean id="person1" class="com.fanxl.study.collections.Person">
         <property name="name" value="上海第一百货公司"/>
         <property name="carList">
@@ -88,5 +89,27 @@
         </property>
     </bean>
 
+    <!--配置Map属性值-->
+    <bean id="student" class="com.fanxl.study.collections.Student">
+        <property name="name" value="LiSi"></property>
+        <property name="carMap">
+            <!--使用map节点及map的entry子节点配置Map类型的成员变量-->
+            <map>
+                <entry key="qq" value-ref="car3"></entry>
+                <entry key="baoMa" value-ref="car2"></entry>
+            </map>
+        </property>
+    </bean>
+
+    <!--配置Properties属性值-->
+    <bean id="dataSource" class="com.fanxl.study.collections.DataSource">
+        <property name="properties">
+            <!--使用props和prop子节点为Properties属性赋值-->
+            <props>
+                <prop key="user">root</prop>
+                <prop key="password">fxl123</prop>
+            </props>
+        </property>
+    </bean>
 
 </beans>
