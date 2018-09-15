@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--xmlns="http://www.springframework.org/schema/util"    -->
 
     <bean id="person" class="com.fanxl.study.Person">
         <property name="name" value="张三"></property>
@@ -111,5 +117,19 @@
             </props>
         </property>
     </bean>
+
+    <!--配置单例的集合bean，以供多个bean进行引用，需要导入util命名空间-->
+    <util:list id="carList">
+        <ref bean="car"/>
+        <ref bean="car1"/>
+    </util:list>
+
+    <!--配置list属性值-->
+    <bean id="person2" class="com.fanxl.study.collections.Person">
+        <property name="name" value="上海第一百货公司"/>
+        <property name="carList" ref="carList">
+        </property>
+    </bean>
+
 
 </beans>
