@@ -24,8 +24,12 @@
     <!--通过构造方法注入属性值可以指定参数的类型-->
     <bean id="car2" class="com.fanxl.study.Car">
         <constructor-arg value="Baoma" type="java.lang.String"></constructor-arg>
-        <constructor-arg value="ShangHai" type="java.lang.String"></constructor-arg>
-        <constructor-arg value="240" type="int"></constructor-arg>
+        <constructor-arg type="java.lang.String">
+            <value><![CDATA[<ShangHai^>]]></value>
+        </constructor-arg>
+        <constructor-arg type="int">
+            <value>240</value>
+        </constructor-arg>
     </bean>
 
 </beans>
