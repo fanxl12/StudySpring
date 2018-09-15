@@ -24,6 +24,7 @@
     <!--通过构造方法注入属性值可以指定参数的类型-->
     <bean id="car2" class="com.fanxl.study.Car">
         <constructor-arg value="Baoma" type="java.lang.String"></constructor-arg>
+        <!-- 如果字面包含特殊字符可以使用<![CDATA[]>包裹起来 -->
         <constructor-arg type="java.lang.String">
             <value><![CDATA[<ShangHai^>]]></value>
         </constructor-arg>
@@ -31,5 +32,45 @@
             <value>240</value>
         </constructor-arg>
     </bean>
+
+    <!--通过构造方法来配置bean属性-->
+    <bean id="car3" class="com.fanxl.study.Car">
+        <constructor-arg value="TeSiLa"></constructor-arg>
+        <constructor-arg value="ShangHai"></constructor-arg>
+        <constructor-arg value="40000"></constructor-arg>
+        <!--null值-->
+        <!--<constructor-arg><null></null></constructor-arg>-->
+    </bean>
+
+    <!-- 公司引用其他bean -->
+    <bean id="company" class="com.fanxl.study.Company">
+        <property name="name" value="上海激荡体育管理有限公司"/>
+        <!--可以使用ref属性建立bean之间的引用关系-->
+        <property name="car" ref="car3"></property>
+        <!--<property name="car">-->
+            <!--<ref bean="car3"/>-->
+        <!--</property>-->
+    </bean>
+
+    <!-- 内部bean -->
+    <bean id="company1" class="com.fanxl.study.Company">
+        <property name="name" value="上海托科软件管理有限公司"/>
+        <property name="car">
+            <bean class="com.fanxl.study.Car">
+                <constructor-arg value="QQ"></constructor-arg>
+                <constructor-arg value="ShangHai"></constructor-arg>
+                <constructor-arg value="60000"></constructor-arg>
+            </bean>
+        </property>
+    </bean>
+
+    <!--给引用的bean赋值-->
+    <bean id="company2" class="com.fanxl.study.Company">
+        <constructor-arg value="上海中原地产"></constructor-arg>
+        <constructor-arg ref="car3"></constructor-arg>
+        <!--为级联属性赋值 注意：属性需要先初始化后才可以为级联属性赋值，否则会抛异常-->
+        <property name="car.maxSpeed" value="260"></property>
+    </bean>
+
 
 </beans>
