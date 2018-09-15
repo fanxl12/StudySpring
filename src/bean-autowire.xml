@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address" class="com.fanxl.study.autowire.Address"
+          p:city="WuHan"
+          p:street="HongShan">
+
+    </bean>
+
+    <bean id="car1" class="com.fanxl.study.autowire.Car"
+        p:brand="BaoMa" p:price="24100">
+
+    </bean>
+
+    <!--byName根据名字进行自动装配，若有则装配，若无则不装配-->
+    <bean id="person" class="com.fanxl.study.autowire.Person" p:name="ZhangSan"
+        autowire="byName">
+    </bean>
+
+    <!--byType根据类型进行自动装配，若有则装配，若无则不装配，但对应的类型只能有一个，有多个会报错-->
+    <bean id="person1" class="com.fanxl.study.autowire.Person" p:name="ZhangSan"
+          autowire="byType">
+    </bean>
+
+</beans>
