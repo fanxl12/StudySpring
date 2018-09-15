@@ -72,5 +72,21 @@
         <property name="car.maxSpeed" value="260"></property>
     </bean>
 
+    <bean id="person1" class="com.fanxl.study.collections.Person">
+        <property name="name" value="上海第一百货公司"/>
+        <property name="carList">
+            <!-- 使用list节点为List类型的属性赋值 -->
+            <list>
+                <ref bean="car"/>
+                <ref bean="car1"/>
+                <bean class="com.fanxl.study.Car">
+                    <constructor-arg value="XueFuLai"></constructor-arg>
+                    <constructor-arg value="WuHan"></constructor-arg>
+                    <constructor-arg value="23000"></constructor-arg>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
 
 </beans>
