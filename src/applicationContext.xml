@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/util
@@ -129,6 +130,11 @@
         <property name="name" value="上海第一百货公司"/>
         <property name="carList" ref="carList">
         </property>
+    </bean>
+
+    <!--利用p来简化属性配置，需要引入p的命名空间-->
+    <bean id="person3" class="com.fanxl.study.collections.Person" p:name="WangWu" p:carList-ref="carList">
+
     </bean>
 
 
