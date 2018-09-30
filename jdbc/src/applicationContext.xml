@@ -32,4 +32,10 @@
         <property name="dataSource" ref="datasource"/>
     </bean>
 
+    <!--配置NamedParameterJdbcTemplate-->
+    <bean id="namedParameterJdbcTemplate"
+        class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="datasource"/>
+    </bean>
+
 </beans>

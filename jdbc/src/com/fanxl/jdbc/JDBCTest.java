@@ -7,10 +7,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description
@@ -21,12 +26,43 @@ public class JDBCTest {
 
     private ApplicationContext ctx = null;
 
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
     {
         ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         jdbcTemplate = (JdbcTemplate) ctx.getBean("jdbcTemplate");
+        namedParameterJdbcTemplate = (NamedParameterJdbcTemplate)ctx.getBean("namedParameterJdbcTemplate");
     }
 
     private JdbcTemplate jdbcTemplate;
+
+    /**
+     * 可直接通过类来实现
+     */
+    @Test
+    public void testNamedParameterJdbcTemplate2() {
+        String sql = "insert into f_school (name) values (:name)";
+
+        School school = new School();
+        school.setName("绿杨中学");
+
+        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(school);
+        namedParameterJdbcTemplate.update(sql, sqlParameterSource);
+    }
+
+    /**
+     * 可以为参数起名字
+     */
+    @Test
+    public void testNamedParameterJdbcTemplate() {
+        String sql = "insert into f_student (name, age) values (:n, :age)";
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("n", "BaiCai");
+        param.put("age", 22);
+
+        namedParameterJdbcTemplate.update(sql, param);
+    }
 
     @Test
     public void testBatchUpdate() {
